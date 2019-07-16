@@ -4,30 +4,150 @@
 </head>
 
 <body>
-  <div id="navbar">
-    <img id="logo" src="img/Logo.png"/>
-  </div>
 
-  <div id="container">
-    <div class="head">
-      AUTHENTIFICATION
-    </div>
-    <div class="content">
-      <div class="col-9">
-        <video autoplay playsinline class="video"></video>
-      </div> 
-      <div class="col-3">
-        <form:form method="POST" action="/spring-mvc-xml/uploadFile" enctype="multipart/form-data">
-          <input input id="inp_img" name="img" type="hidden" value=""/></td>
-          <input class="button" type="submit" value="S'identifier" id="takePhotoBtn"/>
-        </form>
-        
-                
-        <!--a id="download" href="" download> TELECHARGER </a-->
+  <!-- DIV LOADING -->
+  <div id="loading" class="displayNone">
+    <div class="loading modal-background">
+      <div class="loading-content">
+          <div class="loading-circle"></div>
+          <span class="loading-name">Chargement</span>
       </div>
     </div>
   </div>
 
+    <!-- POP UP ECHEC CONNEXION -->
+  <div id="fail" class="displayNone">
+    <div class="popup">
+      <div class="head">
+        Connexion échouée
+      </div>
+      <p class="p-popup">
+        L'identification à GO Securi a échouée. </br> Veuillez réessayer en vous installant dans une pièce bien éclairée, face à la camera.
+      </p>
+      <button class="button button-popup" onclick="displayContent()"> OK </button>
+    </div>
+  </div>
+
+    <!-- NAVBAR -->
+  <div id="navbar">
+    <img id="logo" src="img/Logo.png"/>
+  </div>
+
+  <!-- AUTHENTICATION -->
+  <div id="container">
+    <div id="login">
+      <div class="head">
+        IDENTIFICATION
+      </div>
+      <div class="content">
+        <div class="col-9">
+          <video autoplay playsinline class="video"></video>
+        </div> 
+        <div class="col-3">
+          <form:form id="data" method="POST" action="/spring-mvc-xml/uploadFile" enctype="multipart/form-data">
+            <input input id="inp_img" name="img" type="hidden" value=""/></td>
+            <input class="button" type="submit" value="S'identifier" id="takePhotoBtn"/>
+          </form>
+        </div>
+      </div>
+    </div>
+    
+    <!-- CONNECTE -->
+    <div id="params" class="displayNone">
+        <div class="content">
+          <div class="col-8">
+            <button class="button identification" onclick="reloadPage()"> Identification </button>
+            <div id="welcome" class="head">
+              Bonjour, NOM Prenom
+            </div>
+          </div>
+          <div class="col-4">
+              <img id="pictureEmployee" src=""></img>
+          </div>
+        </div>
+        <div class="content">
+          <div id="list">
+            <div id="form" action="">
+              <div>
+                <input type="checkbox" id="BANDEAU" name="bandeau" onclick="addRemoveItem('BANDEAU')">
+                <label for="BANDEAU">Bandeau</label>
+              </div>
+                
+              <div>
+                <input type="checkbox" id="BLOUSON" name="blouson" onclick="addRemoveItem('BLOUSON')">
+                <label for="BLOUSON">Blouson</label>
+              </div>
+
+              <div>
+                <input type="checkbox" id="BRASSARD_SECURITE" name="brassardSecurite" onclick="addRemoveItem('BRASSARD_SECURITE')">
+                <label for="BRASSARD_SECURITE">Brassard de sécurité</label>
+              </div>
+
+              <div>
+                <input type="checkbox" id="CEINTURE_SECURITE" name="ceintureSecurite" onclick="addRemoveItem('CEINTURE_SECURITE')">
+                <label for="CEINTURE_SECURITE">Ceinture de sécurité tactique</label>
+              </div>
+
+              <div>
+                <input type="checkbox" id="CHEMISE_MANCHES_COURTES" name="chemise" onclick="addRemoveItem('CHEMISE_MANCHES_COURTES')">
+                <label for="CHEMISE_MANCHES_COURTES">Chemise à manches courtes</label>
+              </div>
+
+              <div>
+                <input type="checkbox" id="COUPE_VENT" name="coupeVent" onclick="addRemoveItem('COUPE_VENT')">
+                <label for="COUPE_VENT">Coupe vent</label>
+              </div>
+                  
+              <div>
+                <input type="checkbox" id="DETECTEUR_METAUX" name="detecteurMetaux" onclick="addRemoveItem('DETECTEUR_METAUX')">
+                <label for="DETECTEUR_METAUX">Détecteur de métaux</label>
+              </div>
+
+              <div>
+                <input type="checkbox" id="GANTS_INTERVENTION" name="gantsIntervention" onclick="addRemoveItem('GANTS_INTERVENTION')">
+                <label for="GANTS_INTERVENTION">Gants d'intervention</label>
+              </div>
+
+              <div>
+                <input type="checkbox" id="GILET_PAR_BALLES" name="giletPareBalle" onclick="addRemoveItem('GILET_PAR_BALLES')">
+                <label for="GILET_PAR_BALLES">Gilet pare balle</label>
+              </div>
+
+              <div>
+                <input type="checkbox" id="KIT_OREILLETTES" name="kitOreillettes" onclick="addRemoveItem('KIT_OREILLETTES')">
+                <label for="KIT_OREILLETTES">Kit d'oreillettes</label>
+              </div>              
+                                  
+              <div>
+                <input type="checkbox" id="LAMPE_TORCHE" name="lampeTorche" onclick="addRemoveItem('LAMPE_TORCHE')">
+                <label for="LAMPE_TORCHE">Lampe torche</label>
+              </div>
+
+              <div>
+                <input type="checkbox" id="MOUSQUETON" name="mousqueton" onclick="addRemoveItem('MOUSQUETON')">
+                <label for="MOUSQUETON">Mousqueton</label>
+              </div>
+
+              <div>
+                <input type="checkbox" id="TALKIE_WALKIE" name="talkieWalkie" onclick="addRemoveItem('TALKIE_WALKIE')">
+                <label for="TALKIE_WALKIE">Talkie Walkie</label>
+              </div>
+
+              <div>
+                <input type="checkbox" id="TASER" name="taser" onclick="addRemoveItem('TASER')">
+                <label for="TASER">Taser</label>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        
+    </div>
+
+  </div>
+
+  </div>
+
   <script type="text/javascript" src="script/script.js"></script>
-  
+
   </body>
